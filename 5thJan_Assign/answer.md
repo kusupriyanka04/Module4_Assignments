@@ -82,7 +82,7 @@ The backend ensures that the application is secure and that only authorized user
 
 By managing security on the server, the backend keeps both user data and application logic safe.
 
-Simple Flow Diagram:
+### Simple Flow Diagram:
 
 Frontend ⇄ Backend (Processing, Database, Security) ⇄ Database
 
