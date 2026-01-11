@@ -1,4 +1,4 @@
-import { checkPrime } from "./math";
+import { checkPrime } from "./math.mjs";
 
 console.log(checkPrime(2));
 console.log(checkPrime(11));
