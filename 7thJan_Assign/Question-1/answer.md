@@ -98,11 +98,9 @@ NPM is important because it provides:
 
 ### 5. Community support
 
-Thousands of open-source packages created and maintained by developers.
+* Thousands of open-source packages created and maintained by developers.
 
 # How NPM helps in managing dependencies
-
-NPM manages dependencies through:
 
 ## 1. package.json
 
@@ -135,7 +133,7 @@ NPM manages dependencies through:
 
 To initialize a new Node.js backend project, we use:
 
-**npm init**
+* **npm init**
 
 ## What does npm init do?
 
@@ -182,15 +180,15 @@ When we initialize a Node.js project and install packages, three important files
 
 * It stores:
 
-   *Project name and version
+   * Project name and version
 
-   *Entry file (e.g., index.js)
+   * Entry file (e.g., index.js)
 
-   *Dependencies (libraries)
+   * Dependencies (libraries)
 
-   *Scripts (e.g., start commands)
+   * Scripts (e.g., start commands)
 
-   *Metadata (author, license, etc.)
+   * Metadata (author, license, etc.)
 
 ### Importance
 
