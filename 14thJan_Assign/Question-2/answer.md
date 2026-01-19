@@ -120,7 +120,7 @@ Data integrity ensures the data is accurate, valid, and consistent. A strong DBM
 
 This prevents invalid or conflicting data from entering the system.
 
-📈 5. Scalability
+## 📈 5. Scalability
 
 A scalable system can handle increased load or data growth without degrading performance. Scalability can be:
 
