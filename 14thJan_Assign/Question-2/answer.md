@@ -145,3 +145,129 @@ Fault tolerance ensures the system continues functioning even if parts of it fai
 * **Distributed consensus protocols (e.g., Raft, Paxos)**
 
 Fault tolerance is critical for high availability systems like finance, e-commerce, or healthcare.
+
+# 3. How many types of databases are there? What are their use cases or applications?
+
+There are many ways to classify databases, but one of the most common high-level distinctions used in modern development is between Relational and Non-Relational (NoSQL) databases. Each type has its own strengths, weaknesses, and ideal use cases.
+
+## 🧩 1. Relational Databases (SQL)
+#### Overview
+
+Relational databases store data in structured tables with rows and columns. They use **SQL (Structured Query Language)** for querying and are based on a rigid schema, meaning the data structure is defined in advance.
+
+#### Key Features
+
+* Structured and normalized data
+
+* Strong consistency and integrity
+
+* Support for complex joins and relationships
+
+* ACID-compliant transactions
+
+#### Examples
+
+* **PostgreSQL**
+
+* **MySQL**
+
+* **MariaDB**
+
+* **SQL Server**
+
+* **Oracle Database**
+
+* **SQLite** (often for embedded or mobile use)
+
+#### Best Use Cases
+
+Relational databases shine in use cases where **data consistency, relationships, and structured querying** matter.
+
+✔ **Banking & finance systems**
+
+* Need strict transactional integrity (e.g., money transfers)
+
+✔ **Inventory management**
+
+* Products, suppliers, and stock levels are clearly structured
+
+✔ **CRM and ERP systems**
+
+* Customer records, sales, orders with relational data
+
+✔ **E-commerce platforms**
+
+* Products, users, orders, payment data with constraints
+
+✔ **Government & healthcare systems**
+
+* High integrity, auditing, strong consistency requirements
+
+## 🗃 2. Non-Relational Databases (NoSQL)
+#### Overview
+
+NoSQL databases are designed for **flexible data models**, massive scale, and fast performance. They do not rely on fixed schemas and often prioritize availability and horizontal scaling over strict consistency.
+
+#### Main Categories of NoSQL Databases
+
+There are several subtypes, each optimized for different needs:
+
+✳ **Document Stores**
+
+* Store JSON-like objects (documents)
+
+* Flexible structure per document
+
+Examples: **MongoDB, CouchDB, Firestore**
+
+📦 **Key–Value Stores**
+
+* Fast lookups by key
+
+* Very simple model
+
+Examples: **Redis, DynamoDB, Riak**
+
+🌐 **Column-Family Stores**
+
+* Store data in wide column tables (not relational)
+
+* Good for large-scale analytics
+
+Examples: **Cassandra, HBase**
+
+🔗 **Graph Databases**
+
+* Store data as nodes and edges (relationships)
+
+* Optimized for traversing relationships
+
+Examples: **Neo4j, ArangoDB**
+
+#### Best Use Cases
+
+NoSQL databases are ideal when **flexibility, speed, or horizontal scaling** is needed — or when the data doesn’t fit neatly into tables.
+
+✔ **Real-time analytics & logging**
+
+* Column databases like Cassandra handle massive writes
+
+✔ **Social networks & recommendation engines**
+
+* Graph DBs model relationships (friends, likes, follows)
+
+✔ **Mobile & IoT applications**
+
+* Document DBs handle unpredictable schemas and fast iteration
+
+✔ **Caching systems**
+
+* Key-value stores like Redis speed up reads
+
+✔ **E-commerce catalogs**
+
+* Products have diverse attributes that change over time
+
+✔ **Event streaming & telemetry**
+
+* IoT sensors producing huge semi-structured data streams
