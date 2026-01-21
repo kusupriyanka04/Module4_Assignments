@@ -1,0 +1,158 @@
+SQL Command:
+
+create table students(
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  age INTEGER,
+  course TEXT,
+  create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+Output:
+Success. No rows returned
+
+SQL Command:
+
+INSERT INTO students (name, email, age, course)
+VALUES
+('KusuPriyanka', 'kusupriyanka@gmail.com', 22, 'Computer Science'),
+('Moulika', 'moulika@gmail.com', 19, 'Mathematics'),
+('Gana', 'gana@gmail.com', 24, 'Physics'),
+('Chaitanya', 'chaitanya@gmail.com', 21, 'Computer Science'),
+('Neeraja', 'neeraja@gmail.com', 20, 'Chemistry'),
+('Rohit', 'rohit@gmail.com', 23, 'Biology');
+
+Output:
+Success. No rows returned
+
+
+Fetch all students
+SQL Command:
+
+SELECT * FROM students;
+
+Output:
+
+| id | name         | email                  | age | course           | create_at                 |
+| -- | ------------ | ---------------------- | --- | ---------------- | ------------------------- |
+| 1  | KusuPriyanka | kusupriyanka@gmail.com | 22  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 2  | Moulika      | moulika@gmail.com      | 19  | Mathematics      | 2026-01-19 13:13:29.48414 |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics          | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 5  | Neeraja      | neeraja@gmail.com      | 20  | Chemistry        | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit        | rohit@gmail.com        | 23  | Biology          | 2026-01-19 13:13:29.48414 |
+
+
+Fetch students older than 20
+
+SQL Command:
+SELECT * FROM students WHERE age > 20;
+
+Output:
+
+| id | name         | email                  | age | course           | create_at                 |
+| -- | ------------ | ---------------------- | --- | ---------------- | ------------------------- |
+| 1  | KusuPriyanka | kusupriyanka@gmail.com | 22  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics          | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit        | rohit@gmail.com        | 23  | Biology          | 2026-01-19 13:13:29.48414 |
+
+
+SQL Command:
+
+SELECT name, email FROM students;
+
+Output:
+
+| name         | email                  |
+| ------------ | ---------------------- |
+| KusuPriyanka | kusupriyanka@gmail.com |
+| Moulika      | moulika@gmail.com      |
+| Gana         | gana@gmail.com         |
+| Chaitanya    | chaitanya@gmail.com    |
+| Neeraja      | neeraja@gmail.com      |
+| Rohit        | rohit@gmail.com        |
+
+
+SQL Command:
+
+SELECT * FROM students WHERE course = 'Computer Science';
+
+Output:
+
+| id | name         | email                  | age | course           | create_at                 |
+| -- | ------------ | ---------------------- | --- | ---------------- | ------------------------- |
+| 1  | KusuPriyanka | kusupriyanka@gmail.com | 22  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Computer Science | 2026-01-19 13:13:29.48414 |
+
+
+Update Data:
+
+Update the age of one student
+SQL Command:
+
+UPDATE students SET age = 23 WHERE name = 'KusuPriyanka';
+
+Output:
+
+| id | name         | email                  | age | course           | create_at                 |
+| -- | ------------ | ---------------------- | --- | ---------------- | ------------------------- |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics          | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 5  | Neeraja      | neeraja@gmail.com      | 20  | Chemistry        | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit        | rohit@gmail.com        | 23  | Biology          | 2026-01-19 13:13:29.48414 |
+| 1  | KusuPriyanka | kusupriyanka@gmail.com | 23  | Computer Science | 2026-01-19 13:13:29.48414 |
+| 2  | Moulika      | moulika@gmail.com      | 19  | Mathematics      | 2026-01-19 13:13:29.48414 |
+
+
+
+Update the course for all students enrolled in one course
+SQL Command:
+
+UPDATE students SET course = 'Software Engineering' WHERE course = 'Computer Science';
+
+Output:
+
+| id | name         | email                  | age | course               | create_at                 |
+| -- | ------------ | ---------------------- | --- | -------------------- | ------------------------- |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics              | 2026-01-19 13:13:29.48414 |
+| 5  | Neeraja      | neeraja@gmail.com      | 20  | Chemistry            | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit        | rohit@gmail.com        | 23  | Biology              | 2026-01-19 13:13:29.48414 |
+| 2  | Moulika      | moulika@gmail.com      | 19  | Mathematics          | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Software Engineering | 2026-01-19 13:13:29.48414 |
+| 1  | KusuPriyanka | kusupriyanka@gmail.com | 23  | Software Engineering | 2026-01-19 13:13:29.48414 |
+
+
+Delete Data:
+
+Delete one student using id
+SQL Command:
+
+
+DELETE FROM students WHERE id = 1;
+
+Output:
+
+| id | name      | email               | age | course               | create_at                 |
+| -- | --------- | ------------------- | --- | -------------------- | ------------------------- |
+| 3  | Gana      | gana@gmail.com      | 24  | Physics              | 2026-01-19 13:13:29.48414 |
+| 5  | Neeraja   | neeraja@gmail.com   | 20  | Chemistry            | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit     | rohit@gmail.com     | 23  | Biology              | 2026-01-19 13:13:29.48414 |
+| 2  | Moulika   | moulika@gmail.com   | 19  | Mathematics          | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya | chaitanya@gmail.com | 21  | Software Engineering | 2026-01-19 13:13:29.48414 |
+
+
+Delete all students below a certain age
+SQL Command:
+
+DELETE FROM students WHERE age < 21;
+
+Output:
+
+
+| id | name      | email               | age | course               | create_at                 |
+| -- | --------- | ------------------- | --- | -------------------- | ------------------------- |
+| 3  | Gana      | gana@gmail.com      | 24  | Physics              | 2026-01-19 13:13:29.48414 |
+| 6  | Rohit     | rohit@gmail.com     | 23  | Biology              | 2026-01-19 13:13:29.48414 |
+| 4  | Chaitanya | chaitanya@gmail.com | 21  | Software Engineering | 2026-01-19 13:13:29.48414 |
