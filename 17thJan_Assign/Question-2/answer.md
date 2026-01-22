@@ -104,4 +104,4 @@ A category can include multiple products
 
 Junction table resolves the relationship by storing pairs of IDs.
 
-![ER Diagram](https://chatgpt.com/c/696dd342-8790-832a-adfa-9d4b539d36cb)
+![ER Diagram](./ERdiagram.png)
