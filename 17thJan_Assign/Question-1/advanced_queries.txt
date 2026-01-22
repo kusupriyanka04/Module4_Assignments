@@ -1,0 +1,181 @@
+Aggregate Queries
+1. Count the total number of students
+
+SQL Command:
+
+SELECT COUNT(*) AS total_students FROM students;
+
+Output:
+
+| total_students |
+| -------------- |
+| 5              |
+
+
+2. Find the average age of students
+
+SQL Command:
+
+SELECT AVG(age) as averge_age FROM students;
+
+Output:
+
+| averge_age          |
+| ------------------- |
+| 21.8000000000000000 |
+
+
+3. Find the minimum and maximum age
+
+SQL Command:
+
+SELECT MIN(age) AS minimum_age, MAX(age) AS miximum_age FROM students;
+
+Output:
+
+| minimum_age | miximum_age |
+| ----------- | ----------- |
+| 19          | 24          |
+
+
+4. Count how many students are enrolled in each course
+
+SQL Command:
+
+SELECT course, COUNT(*) AS student_count 
+FROM students
+GROUP BY course;
+
+Output:
+
+| course               | student_count |
+| -------------------- | ------------- |
+| Computer Science     | 1             |
+| Mathematics          | 1             |
+| Physics              | 1             |
+| Software Engineering | 1             |
+| Biology              | 1             |
+
+
+5. Count students whose age is greater than 20
+
+SELECT COUNT(*) AS count_above_20
+FROM students
+WHERE age > 20;
+
+Output:
+
+| count_above_20 |
+| -------------- |
+| 4              |
+
+
+Grouping & Filtering:
+
+1. Display course-wise student count
+
+SQL Command:
+
+SELECT course, COUNT(*) AS students1_count
+FROM students
+GROUP BY course;
+
+Output:
+
+| course               | students1_count |
+| -------------------- | --------------- |
+| Computer Science     | 1               |
+| Mathematics          | 1               |
+| Physics              | 1               |
+| Software Engineering | 1               |
+| Biology              | 1               |
+
+
+2. Display only courses where student count is greater than 1
+
+SQL Command:
+
+SELECT course, COUNT(*) AS student_count
+FROM students
+GROUP BY course
+HAVING COUNT(*) > 1;
+
+Output:
+
+Success. No rows returned
+
+
+3. Display courses sorted by highest student count first
+
+SQL Command:
+
+SELECT course, COUNT(*) AS student_count
+FROM students
+GROUP BY course
+ORDER BY student_count DESC;
+
+Output:
+
+| course               | student_count |
+| -------------------- | ------------- |
+| Computer Science     | 1             |
+| Mathematics          | 1             |
+| Physics              | 1             |
+| Software Engineering | 1             |
+| Biology              | 1             |
+
+
+Ordering & Limiting:
+
+1. Fetch the latest 3 students based on created_at
+
+SQL Command:
+
+SELECT *
+FROM students
+ORDER BY create_at DESC
+LIMIT 3;
+
+Output:
+
+| id | name         | email                  | age | course           | create_at                  |
+| -- | ------------ | ---------------------- | --- | ---------------- | -------------------------- |
+| 7  | KusuPriyanka | kusupriyanka@gmail.com | 22  | Computer Science | 2026-01-21 12:42:08.045802 |
+| 8  | Moulika      | moulika@gmail.com      | 19  | Mathematics      | 2026-01-21 12:42:08.045802 |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics          | 2026-01-19 13:13:29.48414  |
+
+
+2. Fetch the top 5 oldest students
+
+SQL Command:
+
+SELECT * 
+FROM students
+ORDER BY age DESC 
+LIMIT 5;
+
+Output:
+
+| id | name         | email                  | age | course               | create_at                  |
+| -- | ------------ | ---------------------- | --- | -------------------- | -------------------------- |
+| 3  | Gana         | gana@gmail.com         | 24  | Physics              | 2026-01-19 13:13:29.48414  |
+| 6  | Rohit        | rohit@gmail.com        | 23  | Biology              | 2026-01-19 13:13:29.48414  |
+| 7  | KusuPriyanka | kusupriyanka@gmail.com | 22  | Computer Science     | 2026-01-21 12:42:08.045802 |
+| 4  | Chaitanya    | chaitanya@gmail.com    | 21  | Software Engineering | 2026-01-19 13:13:29.48414  |
+| 8  | Moulika      | moulika@gmail.com      | 19  | Mathematics          | 2026-01-21 12:42:08.045802 |
+
+
+3. Fetch students enrolled in a specific course, sorted by age (descending)
+
+SQL Command:
+
+SELECT *
+FROM students 
+WHERE course = 'Software Engineering'
+ORDER BY age DESC;
+
+Output:
+
+| id | name      | email               | age | course               | create_at                 |
+| -- | --------- | ------------------- | --- | -------------------- | ------------------------- |
+| 4  | Chaitanya | chaitanya@gmail.com | 21  | Software Engineering | 2026-01-19 13:13:29.48414 |
