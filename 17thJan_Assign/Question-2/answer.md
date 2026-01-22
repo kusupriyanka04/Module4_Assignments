@@ -1,107 +1,112 @@
 # Database Relationships
-1. Definition
+## 1. Definition
 
-A database relationship describes how data in one table relates to data in another table.
-Relationships are defined using keys, mainly:
+A **database relationship** describes how data in one table relates to data in another table.
+Relationships are defined using **keys**, mainly:
 
-Primary Key (PK): Unique identifier of a record in a table
+* **Primary Key (PK):** Unique identifier of a record in a table
 
-Foreign Key (FK): Field that refers to a primary key in another table
+* **Foreign Key (FK):** Field that refers to a primary key in another table
 
-Database relationships ensure that data remains organized, accurate, consistent, and meaningful.
+Database relationships ensure that data remains **organized, accurate, consistent, and meaningful.**
 
 # Types of Database Relationships
 
-There are three primary types:
+There are **three primary types:**
 
-One-to-One (1:1)
+* One-to-One (1:1)
 
-One-to-Many (1:N)
+* One-to-Many (1:N)
 
-Many-to-Many (M:N)
+* Many-to-Many (M:N)
 
 # 🟦 1. One-to-One (1:1) Relationship
-Definition
 
-In a one-to-one relationship, a record in Table A is linked to exactly one record in Table B, and vice versa.
+## Definition
 
-Example in E-commerce
+In a one-to-one relationship, **a record in Table A is linked to exactly one record in Table B**, and vice versa.
 
-Tables:
+## Example in E-commerce
 
-customers
+### Tables:
 
-customer_profiles (extra info: gender, DOB, profile picture, etc.)
+* customers
 
-Diagram:
+* customer_profiles (extra info: gender, DOB, profile picture, etc.)
+
+### Diagram:
 
 customers (PK: customer_id)
         1 ───────────── 1
 customer_profiles (FK: customer_id)
 
 
-Explanation
+## Explanation
 
-Each customer has one and only one profile record, and each profile belongs to one customer.
+Each customer has **one and only one** profile record, and each profile belongs to one customer.
 
-This is useful to separate sensitive or optional data into another table.
+This is useful to separate **sensitive or optional data** into another table.
 
-🟦 2. One-to-Many (1:N) Relationship
-Definition
+# 🟦 2. One-to-Many (1:N) Relationship
 
-In a one-to-many relationship, a record in Table A can be linked to multiple records in Table B, but not vice versa.
+## Definition
 
-Example in E-commerce
+In a one-to-many relationship, **a record in Table A can be linked to multiple records in Table B**, but not vice versa.
 
-Tables:
+## Example in E-commerce
 
-customers
+### Tables:
 
-orders
+* customers
 
-Diagram:
+* orders
+
+### Diagram:
 
 customers (PK: customer_id)
         1 ─────────────∞
 orders (FK: customer_id)
 
 
-Explanation
+## Explanation
 
-A single customer can place many orders, but each order belongs to one customer only.
+A single customer can place **many orders**, but each order belongs to **one customer** only.
 
-This is the most common type of relationship in relational databases.
+This is the **most common** type of relationship in relational databases.
 
-🟦 3. Many-to-Many (M:N) Relationship
-Definition
+# 🟦 3. Many-to-Many (M:N) Relationship
 
-In a many-to-many relationship, records in Table A can be related to multiple records in Table B, and vice versa.
+## Definition
 
-To implement M:N relationships, we use a junction (bridge) table.
+In a many-to-many relationship, **records in Table A can be related to multiple records in Table B**, and vice versa.
 
-Example in E-commerce
+To implement M:N relationships, we use a **junction (bridge) table.**
 
-Tables:
+## Example in E-commerce
 
-products
+### Tables:
 
-categories
+* products
 
-product_categories (junction table)
+* categories
 
-Diagram:
+* product_categories (junction table)
+
+### Diagram:
 
 products (PK: product_id)     categories (PK: category_id)
          ∞ ────────────── product_categories ───────────── ∞
                            (FK: product_id, category_id)
 
 
-Explanation
+## Explanation
 
-A product can belong to multiple categories (e.g., “Smartphone” in Electronics + Mobiles)
+A product can belong to **multiple categories** (e.g., “Smartphone” in Electronics + Mobiles)
 
-A category can include multiple products
+A category can include **multiple products**
 
 Junction table resolves the relationship by storing pairs of IDs.
+
+# ER Diagram for E-Commerce
 
 ![ER Diagram](./ERdiagram.png)
