@@ -1,0 +1,266 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE orders(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER references users(id),
+  amount INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO users (name, email)
+VALUES
+('Priyanka', 'priyanka@gmail.com'),
+('Riya', 'riya@gmail.com'),
+('Rama', 'rama@gmail.com'),
+('Hari', 'hari@gmail.com'),
+('Priya', 'priya@gmail.com'),
+('Irah', 'irah@gmail.com');
+
+INSERT INTO orders (user_id, amount, status)
+VALUES
+(1, 2500, 'completed'),
+(1, 3000, 'pending'),
+(2, 1500, 'completed'),
+(2, 1200, 'cancelled'),
+(3, 4500, 'completed'),
+(4, 1800, 'shipped'),
+(4, 2000, 'pending'),
+(5, 2200, 'completed'),
+(1, 5000, 'shipped'),
+(6, 3100, 'pending');
+
+Read Data 
+
+1. Fetch all users
+
+SQL Command:
+
+SELECT * FROM users;
+
+Output:
+
+| id | name     | email              | created_at                 |
+| -- | -------- | ------------------ | -------------------------- |
+| 1  | Priyanka | priyanka@gmail.com | 2026-01-23 05:31:06.239368 |
+| 2  | Riya     | riya@gmail.com     | 2026-01-23 05:31:06.239368 |
+| 3  | Rama     | rama@gmail.com     | 2026-01-23 05:31:06.239368 |
+| 4  | Hari     | hari@gmail.com     | 2026-01-23 05:31:06.239368 |
+| 5  | Priya    | priya@gmail.com    | 2026-01-23 05:31:06.239368 |
+| 6  | Irah     | irah@gmail.com     | 2026-01-23 05:31:06.239368 |
+
+
+2. Fetch all orders
+
+SQL Command:
+
+SELECT * FROM orders;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 2  | 1       | 3000   | pending   | 2026-01-23 05:33:01.008011 |
+| 3  | 2       | 1500   | completed | 2026-01-23 05:33:01.008011 |
+| 4  | 2       | 1200   | cancelled | 2026-01-23 05:33:01.008011 |
+| 5  | 3       | 4500   | completed | 2026-01-23 05:33:01.008011 |
+| 6  | 4       | 1800   | shipped   | 2026-01-23 05:33:01.008011 |
+| 7  | 4       | 2000   | pending   | 2026-01-23 05:33:01.008011 |
+| 8  | 5       | 2200   | completed | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+| 10 | 6       | 3100   | pending   | 2026-01-23 05:33:01.008011 |
+
+
+3. Fetch all orders for a specific user
+
+SQL Command:
+
+SELECT * FROM orders
+WHERE user_id = 1;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 2  | 1       | 3000   | pending   | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+
+
+4. Fetch users who have more than one order
+
+SQL Command:
+
+SELECT user_id, COUNT(*) AS order_count
+FROM orders
+GROUP BY user_id
+HAVING COUNT(*) > 1;
+
+Output:
+
+| user_id | order_count |
+| ------- | ----------- |
+| 4       | 2           |
+| 2       | 2           |
+| 1       | 3           |
+
+5. Fetch total order amount per user
+
+SQL Command:
+
+SELECT u.id, u.name, SUM(o.amount) AS total_amount
+FROM users u
+JOIN orders o ON u.id = o.user_id
+GROUP BY u.id, u.name;
+
+Output:
+
+| id | name     | total_amount |
+| -- | -------- | ------------ |
+| 4  | Hari     | 3800         |
+| 6  | Irah     | 3100         |
+| 2  | Riya     | 2700         |
+| 3  | Rama     | 4500         |
+| 5  | Priya    | 2200         |
+| 1  | Priyanka | 10500        |
+
+Update Data
+
+1. Update the email of one user
+
+SQL Command:
+
+UPDATE users
+SET email = 'kusupriyanka@gmail.com'
+WHERE id = 1;
+
+Output:
+
+| id | name     | email                  | created_at                 |
+| -- | -------- | ---------------------- | -------------------------- |
+| 2  | Riya     | riya@gmail.com         | 2026-01-23 05:31:06.239368 |
+| 3  | Rama     | rama@gmail.com         | 2026-01-23 05:31:06.239368 |
+| 4  | Hari     | hari@gmail.com         | 2026-01-23 05:31:06.239368 |
+| 5  | Priya    | priya@gmail.com        | 2026-01-23 05:31:06.239368 |
+| 6  | Irah     | irah@gmail.com         | 2026-01-23 05:31:06.239368 |
+| 1  | Priyanka | kusupriyanka@gmail.com | 2026-01-23 05:31:06.239368 |
+
+
+2. Update the status of all orders for a specific user
+
+SQL Command:
+
+UPDATE orders
+SET status = 'completed'
+WHERE user_id = 2;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 2  | 1       | 3000   | pending   | 2026-01-23 05:33:01.008011 |
+| 5  | 3       | 4500   | completed | 2026-01-23 05:33:01.008011 |
+| 6  | 4       | 1800   | shipped   | 2026-01-23 05:33:01.008011 |
+| 7  | 4       | 2000   | pending   | 2026-01-23 05:33:01.008011 |
+| 8  | 5       | 2200   | completed | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+| 10 | 6       | 3100   | pending   | 2026-01-23 05:33:01.008011 |
+| 3  | 2       | 1500   | completed | 2026-01-23 05:33:01.008011 |
+| 4  | 2       | 1200   | completed | 2026-01-23 05:33:01.008011 |
+
+
+3. Update order amount for a single order
+
+SQL Command:
+
+UPDATE orders
+SET amount = 2000
+WHERE id = 3;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 2  | 1       | 3000   | pending   | 2026-01-23 05:33:01.008011 |
+| 5  | 3       | 4500   | completed | 2026-01-23 05:33:01.008011 |
+| 6  | 4       | 1800   | shipped   | 2026-01-23 05:33:01.008011 |
+| 7  | 4       | 2000   | pending   | 2026-01-23 05:33:01.008011 |
+| 8  | 5       | 2200   | completed | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+| 10 | 6       | 3100   | pending   | 2026-01-23 05:33:01.008011 |
+| 4  | 2       | 1200   | completed | 2026-01-23 05:33:01.008011 |
+| 3  | 2       | 2000   | completed | 2026-01-23 05:33:01.008011 |
+
+Delete Data
+
+1. Delete one order using order id
+
+SQL Command:
+
+DELETE FROM orders
+WHERE id = 2;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 5  | 3       | 4500   | completed | 2026-01-23 05:33:01.008011 |
+| 6  | 4       | 1800   | shipped   | 2026-01-23 05:33:01.008011 |
+| 7  | 4       | 2000   | pending   | 2026-01-23 05:33:01.008011 |
+| 8  | 5       | 2200   | completed | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+| 10 | 6       | 3100   | pending   | 2026-01-23 05:33:01.008011 |
+| 4  | 2       | 1200   | completed | 2026-01-23 05:33:01.008011 |
+| 3  | 2       | 2000   | completed | 2026-01-23 05:33:01.008011 |
+
+2. Delete all orders of a specific user
+
+SQL Command:
+
+DELETE FROM orders
+WHERE user_id = 3;
+
+Output:
+
+| id | user_id | amount | status    | created_at                 |
+| -- | ------- | ------ | --------- | -------------------------- |
+| 1  | 1       | 2500   | completed | 2026-01-23 05:33:01.008011 |
+| 6  | 4       | 1800   | shipped   | 2026-01-23 05:33:01.008011 |
+| 7  | 4       | 2000   | pending   | 2026-01-23 05:33:01.008011 |
+| 8  | 5       | 2200   | completed | 2026-01-23 05:33:01.008011 |
+| 9  | 1       | 5000   | shipped   | 2026-01-23 05:33:01.008011 |
+| 10 | 6       | 3100   | pending   | 2026-01-23 05:33:01.008011 |
+| 4  | 2       | 1200   | completed | 2026-01-23 05:33:01.008011 |
+| 3  | 2       | 2000   | completed | 2026-01-23 05:33:01.008011 |
+
+3. Attempt deleting a user with existing orders and observe the behavior
+
+SQL Command:
+
+DELETE FROM users
+WHERE id = 1;
+
+Output:
+
+Error: Failed to run sql query: ERROR: 23503: update or delete on table "users" violates foreign key constraint "orders_user_id_fkey" on table "orders" DETAIL: Key (id)=(1) is still referenced from table "orders".
+
+Conceptual Question:
+
+Why should orders not be stored inside the users table?
+
+Conceptual Answer:
+
+Orders should NOT be stored inside the users table because:
+1. A user can have many orders, so storing multiple orders in one user row breaks normalization.
+2. It creates duplication and makes updates harder.
+3. Queries become inefficient and data becomes inconsistent.
+4. Relational modeling separates entities for clarity and scalability.
