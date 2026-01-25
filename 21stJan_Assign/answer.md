@@ -16,8 +16,9 @@
 
 * Constraints (e.g., NOT NULL, UNIQUE)
 
-Example:
-For an e-commerce app, part of the schema might specify that:
+**Example:**
+
+**For an e-commerce app, part of the schema might specify that:**
 
 * A users table holds user data
 
@@ -37,7 +38,7 @@ Schema design should come **before backend implementation** because:
 
 * API and business logic depend on table structure
 
-If developers start writing code without a schema:
+**If developers start writing code without a schema:**
 
 * Data access logic becomes unclear
 
@@ -45,7 +46,7 @@ If developers start writing code without a schema:
 
 * Integration between modules becomes difficult
 
-A well-designed schema ensures:
+**A well-designed schema ensures:**
 
 ✔ Clear data flow
 ✔ Smooth backend development
@@ -53,11 +54,11 @@ A well-designed schema ensures:
 
 # 3. How poor schema design impacts data consistency, maintenance, and scalability
 
-Bad schema design can cause serious long-term issues:
+**Bad schema design can cause serious long-term issues:**
 
 ## a. Data Consistency Problems
 
-Without proper normalization and constraints:
+**Without proper normalization and constraints:**
 
 * Data may be duplicated
 
@@ -65,11 +66,11 @@ Without proper normalization and constraints:
 
 * Updates may leave stale values
 
-Example: storing user email in multiple tables can lead to mismatched values if updated in only one place.
+**Example:** storing user email in multiple tables can lead to mismatched values if updated in only one place.
 
 ## b. Maintenance Difficulties
 
-Developers struggle when:
+**Developers struggle when:**
 
 * Table names are unclear
 
@@ -79,9 +80,9 @@ Developers struggle when:
 
 This increases debugging time and slows development.
 
-c. Scalability Limitations
+## c. Scalability Limitations
 
-Poor schemas lead to:
+**Poor schemas lead to:**
 
 * Slow queries due to bad indexing
 
@@ -122,7 +123,7 @@ A **database schema** is the plan or structure of the entire database, defining 
 
 A **database table** is an actual storage structure that holds data in rows and columns.
 
-Analogy:
+**Analogy:**
 
 * **Schema** = blueprint of a house
 
@@ -144,19 +145,19 @@ Each table should model a **single logical entity** (also called 1NF principle).
 
 ### Reasons:
 
-** 1. Avoid Data Duplication**
+**1. Avoid Data Duplication**
 Mixing entities forces repetition and inconsistency.
 
-** 2. Simplify Relationships**
+**2. Simplify Relationships**
 Separate tables allow clean joins and foreign keys.
 
-** 3. Improve Maintainability**
+**3. Improve Maintainability**
 Single responsibility makes schema easier to change.
 
-Example (bad design):
+**Example (bad design):**
 Storing user details inside the orders table mixes entities.
 
-Example (good design):
+**Example (good design):**
 users and orders in separate tables linked by user_id.
 
 # 7. Why redundant or derived data should be avoided in table design
@@ -164,7 +165,7 @@ users and orders in separate tables linked by user_id.
 **Redundant data** means duplicated data stored in multiple places.
 **Derived data** means data that can be computed from existing fields.
 
-Problems caused:
+**Problems caused:**
 
 * Data inconsistencies
 
@@ -172,7 +173,7 @@ Problems caused:
 
 * Extra update logic
 
-Example:
+**Example:**
 
 ❌ Storing total_price in orders if it can be calculated from quantity * unit_price.
 
@@ -182,7 +183,7 @@ Storing redundant or derived data should only be done when there are clear perfo
 
 # 8. The importance of choosing correct data types while designing tables
 
-Choosing correct data types affects:
+**Choosing correct data types affects:**
 
 * Storage efficiency
 
@@ -192,7 +193,7 @@ Choosing correct data types affects:
 
 * Application correctness
 
-Examples:
+**Examples:**
 
 * Using **INTEGER** for IDs instead of TEXT ensures faster indexing.
 
@@ -200,7 +201,7 @@ Examples:
 
 * Using **TIMESTAMP** for time fields enables date comparisons.
 
-Bad type choices can cause:
+**Bad type choices can cause:**
 
 * Slower queries
 
